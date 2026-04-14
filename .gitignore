@@ -1,0 +1,17 @@
+# Ignore image uploads but keep the readme in images/
+images/*
+!images/README.md
+
+# Common
+node_modules/
+.dist/
+dist/
+__pycache__/
+*.pyc
+.DS_Store
+.vscode/
+*.log
+
+# Optional environment
+.env
+env/
