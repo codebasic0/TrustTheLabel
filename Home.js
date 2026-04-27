@@ -79,7 +79,7 @@ function typeWriter(element, text, speed = 30) {
 }
 
 function goHome() {
-    window.location.href = "Home.html";
+    window.location.href = "index.html";
 }
 
 document.addEventListener("DOMContentLoaded", function() {
