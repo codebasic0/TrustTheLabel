@@ -1,25 +1,59 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta charset="utf-8" />
-    <title>Category</title>
-    <link rel="stylesheet" href="Home.css" />
-    <style>
-        .product-card { border: 1px solid #ddd; padding: 12px; margin: 10px 0; border-radius:6px; display:flex; gap:12px; align-items:flex-start; }
-        .product-info { flex:1 }
-        .product-name { font-size:18px; font-weight:600 }
-        .tag { display:inline-block; background:#eee; padding:2px 6px; border-radius:4px; margin-right:6px; font-size:12px }
-        .back-link { margin-bottom: 12px; display:inline-block }
-    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expose The Label - Browse</title>
+    <link rel="stylesheet" href="category.css" />
 </head>
 <body>
-    <div class="page-container">
-        <a class="back-link" href="Home.html">← Back to Home</a>
-        <h1 id="categoryTitle">Category</h1>
-        <div style="margin:12px 0">
-            <input id="productSearch" type="search" placeholder="Search products in this category" style="padding:10px 14px;border-radius:10px;border:1px solid #d6eada;width:100%;max-width:520px;" />
+    <nav class="top-nav">
+        <div class="nav-content">
+            <a class="logo-text" href="index.html">Expose<span>TheLabel</span></a>
+            <div class="search-wrapper">
+                <div class="search-bar-container">
+                    <input id="productSearch" type="search" placeholder="Search for biscuits, chips, sodas..." />
+                    <button class="search-icon-btn">🔍 Search</button>
+                </div>
+            </div>
         </div>
-        <div id="product-container"></div>
+    </nav>
+
+    <div class="main-layout">
+        <aside class="sidebar">
+            <h3>Filters</h3>
+            <div class="filter-group">
+                <h4>Health Risk</h4>
+                <label><input type="checkbox" class="filter-risk" value="Low"> Low Risk</label>
+                <label><input type="checkbox" class="filter-risk" value="Medium"> Medium Risk</label>
+                <label><input type="checkbox" class="filter-risk" value="High"> High Risk</label>
+            </div>
+            <div class="filter-group">
+                <h4>Dietary Needs</h4>
+                <label><input type="checkbox"> Sugar-Free</label>
+                <label><input type="checkbox"> Vegan</label>
+                <label><input type="checkbox"> Nut-Free</label>
+            </div>
+        </aside>
+
+        <main class="content-area">
+            <header class="content-header">
+                <div>
+                    <h1 id="categoryTitle">Category</h1>
+                    <p id="resultCount">Showing all items</p>
+                </div>
+                <div class="sort-options">
+                    <select id="sortProducts">
+                        <option value="default">Sort by: Featured</option>
+                        <option value="risk-low">Risk: Low to High</option>
+                        <option value="calories">Lowest Calories</option>
+                    </select>
+                </div>
+            </header>
+
+            <div id="product-container" class="product-grid">
+                </div>
+        </main>
     </div>
 
     <script src="products.js"></script>

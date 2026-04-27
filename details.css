@@ -1,0 +1,184 @@
+/* --- PRODUCT DETAILS BRANDED STYLES --- */
+:root {
+    --bg-1: #f7fff7;
+    --bg-2: #e7f8e8;
+    --accent-1: #4f9f66;
+    --accent-2: #2d7f51;
+    --muted: #3f5a41;
+    --surface: #ffffff;
+    --glass: rgba(255,255,255,0.86);
+    --card-shadow: 0 12px 36px rgba(30,60,30,0.08);
+}
+
+body {
+    margin: 0;
+    font-family: 'Segoe UI', 'Inter', system-ui, Arial, sans-serif;
+    /* Matching Home.css Gradient */
+    background: radial-gradient(circle at top left, var(--bg-1) 0%, var(--bg-2) 40%, #d3efce 80%, #f2fff4 100%);
+    color: #13472f;
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+}
+
+.page-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+.detail-container {
+    background: var(--glass);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 24px;
+    padding: 40px;
+    box-shadow: var(--card-shadow);
+}
+
+/* Header Section */
+.detail-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.brand-subtitle {
+    color: var(--accent-1);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 0.9rem;
+    margin-bottom: 8px;
+}
+
+.detail-header h1 {
+    font-size: 2.5rem;
+    color: #0e3a24;
+    margin: 0;
+}
+
+.image-wrapper {
+    background: white;
+    display: inline-block;
+    padding: 20px;
+    border-radius: 20px;
+    margin-top: 25px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+}
+
+.detail-image {
+    max-width: 250px;
+    height: auto;
+    object-fit: contain;
+}
+
+/* Sections */
+.section-title {
+    color: var(--accent-2);
+    margin-top: 40px;
+    font-size: 1.3rem;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.section-title::before {
+    content: "";
+    width: 5px;
+    height: 25px;
+    background: var(--accent-1);
+    border-radius: 10px;
+}
+
+.info-card {
+    background: var(--surface);
+    padding: 20px;
+    border-radius: 16px;
+    margin-top: 12px;
+    line-height: 1.7;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+    border: 1px solid #eef5ee;
+}
+
+/* Specific Health UI */
+.harmful-item {
+    margin-bottom: 15px;
+    padding: 15px;
+    background: #fff8f8;
+    border-left: 5px solid #ff4d4d;
+    border-radius: 0 12px 12px 0;
+}
+
+.harmful-item strong {
+    color: #cc0000;
+}
+
+.nutrition-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.nutrition-item {
+    background: white;
+    border: 1px solid #ddefdd;
+    padding: 15px;
+    border-radius: 14px;
+    text-align: center;
+    color: var(--muted);
+}
+
+.nutrition-item strong {
+    color: var(--accent-2);
+    display: block;
+    font-size: 0.85rem;
+    margin-bottom: 4px;
+}
+
+/* Buttons & Links */
+.back-link {
+    text-decoration: none;
+    color: var(--accent-1);
+    font-weight: 700;
+    margin-bottom: 30px;
+    display: inline-block;
+    transition: transform 0.2s;
+}
+
+.back-link:hover {
+    transform: translateX(-5px);
+}
+
+.source-footer {
+    margin-top: 50px;
+    text-align: center;
+}
+
+.source-btn {
+    background: var(--accent-1);
+    color: white;
+    padding: 14px 30px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 700;
+    display: inline-block;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 20px rgba(79, 159, 102, 0.2);
+}
+
+.source-btn:hover {
+    background: var(--accent-2);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 25px rgba(79, 159, 102, 0.3);
+}
+
+.alt-list {
+    margin: 0;
+    padding-left: 20px;
+    color: var(--accent-2);
+}
+
+/* Risk Text Colors */
+.risk-text-High { color: #ff4d4d; }
+.risk-text-Medium { color: #ffa500; }
+.risk-text-Low { color: #2ecc71; }

@@ -1,108 +1,102 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Expose The Label</title>
     <link rel="stylesheet" href="Home.css"/>
 </head>
 
 <body>
-    <img id="Logo" src="logo.png"/>
+    <img id="Logo" src="logo.png" alt="Expose The Label Logo"/>
 
     <div class="page-container">
+        <div id="TopNavRow">
+            <div class="nav-group-left">
+                <button id="HomeButton">Home</button>
+                <button id="ScanButton" onclick="window.location.href='scan.html'">Scan</button>
 
-        <div id="LeftNavBar">
-            <button id="HomeButton">Home</button>
-            <button id="ScanButton" onclick="window.location.href='scan.html'">Scan</button>
+                <div class="dropdown">
+                    <button class="dropbtn">Browse Categories</button>
+                    <div class="dropdown-content">
+                        <a href="category.html?cat=Biscuits">Biscuits</a>
+                        <a href="category.html?cat=Snacks">Snacks</a>
+                        <a href="category.html?cat=Potato%20Chips">Potato Chips</a>
+                        <a href="category.html?cat=Soft%20Drinks">Soft Drinks</a>
+                        <a href="category.html?cat=Energy%20Drinks">Energy Drinks</a>
+                        <a href="category.html?cat=Instant%20Noodles">Instant Noodles</a>
+                        <a href="category.html?cat=Breakfast%20Cereals">Breakfast Cereals</a>
+                        <a href="category.html?cat=Chocolates">Chocolates</a>
+                        <a href="category.html?cat=Ice%20Creams">Ice Creams</a>
+                        <a href="category.html?cat=Packaged%20Juices">Packaged Juices</a>
+                    </div>
+                </div>
 
-            <div class="dropdown">
-                <button class="dropbtn">Browse Categories</button>
-                <div class="dropdown-content">
-                    <a href="category.html?cat=Biscuits">Biscuits</a>
-                    <a href="category.html?cat=Snacks">Snacks</a>
-                    <a href="category.html?cat=Potato%20Chips">Potato Chips</a>
-                    <a href="category.html?cat=Soft%20Drinks">Soft Drinks</a>
-                    <a href="category.html?cat=Energy%20Drinks">Energy Drinks</a>
-                    <a href="category.html?cat=Instant%20Noodles">Instant Noodles</a>
-                    <a href="category.html?cat=Breakfast%20Cereals">Breakfast Cereals</a>
-                    <a href="category.html?cat=Chocolates">Chocolates</a>
-                    <a href="category.html?cat=Ice%20Creams">Ice Creams</a>
-                    <a href="category.html?cat=Packaged%20Juices">Packaged Juices</a>
+                <div class="dropdown">
+                    <button class="dropbtn">Ingredients</button>
+                    <div class="dropdown-content">
+                        <a href="#">Find Safer Alternatives</a>
+                        <a href="#">How It Works?</a>
+                        <a href="#">Risk Levels</a>
+                    </div>
+                </div>
+
+                <div class="dropdown">
+                    <button class="dropbtn">Support</button>
+                    <div class="dropdown-content">
+                        <a href="#">Sources</a>
+                        <a href="#">Submit a Product</a>
+                        <a href="#">Report an Issue</a>
+                    </div>
                 </div>
             </div>
 
-            <div class="dropdown">
-                <button class="dropbtn">Ingredients</button>
-                <div class="dropdown-content">
-                    <a href="#">Find Safer Alternatives</a>
-                    <a href="#">How It Works?</a>
-                    <a href="#">Risk Levels</a>
+            <div class="nav-group-right">
+                <div class="dropdown">
+                    <button class="nav-btn dropbtn">Translation</button>
+                    <div class="dropdown-content">
+                        <a href="#">Arabic</a>
+                        <a href="#">Hindi</a>
+                        <a href="#">English</a>
+                        <a href="#">Spanish</a>
+                    </div>
                 </div>
-            </div>
-
-            <div class="dropdown">
-                <button class="dropbtn">Support</button>
-                <div class="dropdown-content">
-                    <a href="#">Sources</a>
-                    <a href="#">Submit a Product</a>
-                    <a href="#">Report an Issue</a>
-                </div>
+                <button class="nav-btn">Search</button>
+                <button class="LoginSignUp" onclick="window.location.href='Login.html'">
+                    Login/Sign Up
+                </button>
             </div>
         </div>
-
-        <div id="RightNavBar">
-            <div class="dropdown">
-                <button class="nav-btn dropbtn">Translation</button>
-                <div class="dropdown-content">
-                    <a href="#">Arabic</a>
-                    <a href="#">Chinese</a>
-                    <a href="#">English</a>
-                    <a href="#">French</a>
-                    <a href="#">German</a>
-                    <a href="#">Hindi</a>
-                    <a href="#">Japanese</a>
-                    <a href="#">Korean</a>
-                    <a href="#">Russian</a>
-                    <a href="#">Spanish</a>
-                </div>
-            </div>
-
-            <button class="nav-btn">Search</button>
-
-            <button class="LoginSignUp" onclick="window.location.href='Login.html'">
-                Login/Sign Up
-            </button>
-        </div>
-
+        
         <div class="line"></div>
 
         <div id="MainBody">
-            <h4>WELCOME TO EXPOSE THE LABEL</h4>
-            <h1>Understanding Products<br>Beyond The Surface</h1>
-            <h6>BREAKING DOWN INGREDIENTS, REVEALING THEIR IMPACT, AND GUIDING TOWARDS SAFER ALTERNATIVES</h6>
+            <div class="content-text">
+                <h4>WELCOME TO EXPOSE THE LABEL</h4>
+                <h1>Understanding Products<br>Beyond The Surface</h1>
+                <h6>BREAKING DOWN INGREDIENTS, REVEALING THEIR IMPACT, AND GUIDING TOWARDS SAFER ALTERNATIVES</h6>
+            </div>
         </div>
-
 
         <div id="FactsSection">
             <h1>Did You Know?</h1>
             <h3 id="factText"></h3>
-            <h7>^- Click the above facts for its verified sources -^</h7>
+            <h6>^- Click the above facts for its verified sources -^</h6>
         </div>
 
         <div class="features">
             <div class="feature-box">
-                <img src="health.png">
+                <img src="health.png" alt="Health">
                 <h3>Healthy Choices</h3>
                 <p>Understand how ingredients impact your body.</p>
             </div>
-
             <div class="feature-box">
-                <img src="ingredients.png">
+                <img src="ingredients.png" alt="Ingredients">
                 <h3>Ingredient Awareness</h3>
                 <p>Break down what goes into everyday products.</p>
             </div>
-
             <div class="feature-box">
-                <img src="alternatives.png">
+                <img src="alternatives.png" alt="Alternatives">
                 <h3>Smarter Alternatives</h3>
                 <p>Find better options backed by research.</p>
             </div>
@@ -110,45 +104,35 @@
 
         <div id="MoodSection">
             <h1>How Are You Feeling Today?</h1>
-
             <input type="range" min="1" max="10" value="5" id="moodSlider">
-
             <p>Your Mood: <span id="moodValue">5</span></p>
-
             <h3 id="moodResult">Select your mood to get suggestions</h3>
         </div>
+    </div> <div class="EndOfMainPage">
+        <button class="BackToTop" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">Back To The Top</button>
 
-    </div>
-
-    <div class="EndOfMainPage">
-
-    <button class="BackToTop">Back To The Top</button>
-
-    <div class="footer-container">
-        <div class="footer-column">
-            <h2>Get To Know Us</h2>
-            <a href="#">About ExposeTheLabel</a>
-            <a href="#">Sources</a>
-            <a href="#">Developers</a>
-        </div>
-
-        <div class="footer-column">
-            <h2>Connect With Us</h2>
-            <a href="#">Instagram</a>
-            <a href="#">Facebook</a>
-            <a href="#">YouTube</a>
-        </div>
-
-        <div class="footer-column">
-            <h2>Help</h2>
-            <a href="#">Support</a>
-            <a href="#">Contact Us</a>
-            <a href="#">Sources</a>
+        <div class="footer-container">
+            <div class="footer-column">
+                <h2>Get To Know Us</h2>
+                <a href="#">About ExposeTheLabel</a>
+                <a href="#">Sources</a>
+                <a href="#">Developers</a>
+            </div>
+            <div class="footer-column">
+                <h2>Connect With Us</h2>
+                <a href="#">Instagram</a>
+                <a href="#">Facebook</a>
+                <a href="#">YouTube</a>
+            </div>
+            <div class="footer-column">
+                <h2>Help</h2>
+                <a href="#">Support</a>
+                <a href="#">Contact Us</a>
+                <a href="#">Sources</a>
+            </div>
         </div>
     </div>
 
-</div>
     <script src="Home.js"></script>
-
 </body>
 </html>
