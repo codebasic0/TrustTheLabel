@@ -10,77 +10,92 @@
     <div class="page-container">
         <div class="detail-container">
             <a href="javascript:history.back()" class="back-link">← Back to List</a>
-            
-            <div id="product-detail-content">
-                </div>
+            <div id="product-detail-content"></div>
         </div>
     </div>
-
-    <script src="products.js"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const params = new URLSearchParams(window.location.search);
+        document.addEventListener('DOMContentLoaded', async () => {
+            const params  = new URLSearchParams(window.location.search);
             const barcode = params.get('id');
             const content = document.getElementById('product-detail-content');
 
-            let foundProduct = null;
-            for (let cat in window.products) {
-                foundProduct = window.products[cat].find(p => p.barcode === barcode);
-                if (foundProduct) break;
-            }
-
-            if (!foundProduct) {
-                content.innerHTML = "<h1 style='color: white;'>Product not found</h1>";
+            if (!barcode) {
+                content.innerHTML = "<h1 style='color:white;'>No product specified.</h1>";
                 return;
             }
 
+            content.innerHTML = "<p style='color:#7a8499;padding:20px;'>Loading product...</p>";
+
+            let p = null;
+            try {
+                const res = await fetch(`api.php?action=product&id=${encodeURIComponent(barcode)}`);
+                if (!res.ok) throw new Error('Server error');
+                p = await res.json();
+            } catch (e) {
+                content.innerHTML = "<h1 style='color:#ff4f4f;'>Failed to load product. Make sure api.php is running.</h1>";
+                return;
+            }
+
+            if (!p) {
+                content.innerHTML = "<h1 style='color:white;'>Product not found.</h1>";
+                return;
+            }
+
+            const imgFallback = `https://picsum.photos/seed/${p.barcode}/300/300`;
+
             content.innerHTML = `
                 <div class="detail-header">
-                    <p class="brand-subtitle">${foundProduct.brand}</p>
-                    <h1>${foundProduct.name}</h1>
+                    <p class="brand-subtitle">${p.brand}</p>
+                    <h1>${p.name}</h1>
                     <div class="image-wrapper">
-                        <img class="detail-image" src="${foundProduct.image}" onerror="this.src='https://picsum.photos/seed/${foundProduct.barcode}/300/300'">
+                        <img class="detail-image"
+                             src="${p.image}"
+                             alt="${p.name}"
+                             onerror="this.src='${imgFallback}'">
                     </div>
                 </div>
 
-                <h2 class="section-title">Health Risk: ${foundProduct.riskLevel}</h2>
+                <h2 class="section-title">Health Risk: ${p.riskLevel}</h2>
                 <div class="info-card">
-                    <p>This product is categorized as <strong class="risk-text-${foundProduct.riskLevel}">${foundProduct.riskLevel} Risk</strong> based on its chemical profile.</p>
+                    <p>This product is categorized as <strong class="risk-text-${p.riskLevel}">${p.riskLevel} Risk</strong> based on its chemical profile.</p>
                 </div>
 
-                <h2 class="section-title">⚠️ Harmful Substances & Side Effects</h2>
+                <h2 class="section-title">⚠️ Harmful Substances &amp; Side Effects</h2>
                 <div class="info-card">
-                    ${foundProduct.harmfulSubstances.map(s => `
-                        <div class="harmful-item">
-                            <strong>${s.name}</strong><br>
-                            <span>${s.effect}</span>
-                        </div>
-                    `).join('')}
+                    ${p.harmfulSubstances.length > 0
+                        ? p.harmfulSubstances.map(s => `
+                            <div class="harmful-item">
+                                <strong>${s.name}</strong><br>
+                                <span>${s.effect}</span>
+                            </div>`).join('')
+                        : '<p>No harmful substances flagged for this product.</p>'
+                    }
                 </div>
 
                 <h2 class="section-title">Full Ingredient List</h2>
                 <div class="info-card">
-                    <p>${foundProduct.ingredients.join(', ')}</p>
-                    <p><strong>Allergens:</strong> ${foundProduct.allergens.length > 0 ? foundProduct.allergens.join(', ') : 'None'}</p>
+                    <p>${p.ingredients.join(', ')}</p>
+                    <p><strong>Allergens:</strong> ${p.allergens.length > 0 ? p.allergens.join(', ') : 'None'}</p>
                 </div>
 
                 <h2 class="section-title">Nutrition Facts (per 100g)</h2>
                 <div class="nutrition-grid">
-                    <div class="nutrition-item"><strong>Calories</strong>${foundProduct.nutrition.calories} kcal</div>
-                    <div class="nutrition-item"><strong>Sugar</strong>${foundProduct.nutrition.sugar_g}g</div>
-                    <div class="nutrition-item"><strong>Fat</strong>${foundProduct.nutrition.fat_g}g</div>
-                    <div class="nutrition-item"><strong>Sodium</strong>${foundProduct.nutrition.sodium_mg}mg</div>
+                    <div class="nutrition-item"><strong>Calories</strong>${p.nutrition.calories} kcal</div>
+                    <div class="nutrition-item"><strong>Sugar</strong>${p.nutrition.sugar_g}g</div>
+                    <div class="nutrition-item"><strong>Fat</strong>${p.nutrition.fat_g}g</div>
+                    <div class="nutrition-item"><strong>Sodium</strong>${p.nutrition.sodium_mg}mg</div>
                 </div>
 
                 <h2 class="section-title">✅ Safer Alternatives</h2>
                 <div class="info-card">
-                    <ul class="alt-list">
-                        ${foundProduct.saferAlternatives.map(a => `<li>${a.name} (${a.brand})</li>`).join('')}
-                    </ul>
+                    ${p.saferAlternatives.length > 0
+                        ? `<ul class="alt-list">${p.saferAlternatives.map(a => `<li>${a.name} (${a.brand})</li>`).join('')}</ul>`
+                        : '<p>No alternatives listed.</p>'
+                    }
                 </div>
 
                 <div class="source-footer">
-                    <a href="${foundProduct.source}" target="_blank" class="source-btn">View Official Label ↗</a>
+                    <a href="${p.source}" target="_blank" class="source-btn">View Official Label ↗</a>
                 </div>
             `;
         });

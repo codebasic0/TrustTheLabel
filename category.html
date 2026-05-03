@@ -3,60 +3,180 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Expose The Label - Browse</title>
+    <title>Browse — Expose The Label</title>
     <link rel="stylesheet" href="category.css" />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <nav class="top-nav">
-        <div class="nav-content">
-            <a class="logo-text" href="index.html">Expose<span>TheLabel</span></a>
-            <div class="search-wrapper">
-                <div class="search-bar-container">
-                    <input id="productSearch" type="search" placeholder="Search for biscuits, chips, sodas..." />
-                    <button class="search-icon-btn">🔍 Search</button>
+
+    <img id="Logo" src="logo.png" alt="Expose The Label Logo" />
+
+    <div class="page-container">
+
+        <div id="TopNavRow">
+            <div class="nav-group-left">
+                <button id="HomeButton" onclick="window.location.href='index.html'">Home</button>
+                <button id="ScanButton" onclick="window.location.href='scan.html'">Scan</button>
+
+                <div class="dropdown">
+                    <button class="dropbtn">Browse Categories</button>
+                    <div class="dropdown-content">
+                        <a href="category.html?cat=Biscuits">Biscuits</a>
+                        <a href="category.html?cat=Snacks">Snacks</a>
+                        <a href="category.html?cat=Potato%20Chips">Potato Chips</a>
+                        <a href="category.html?cat=Soft%20Drinks">Soft Drinks</a>
+                        <a href="category.html?cat=Energy%20Drinks">Energy Drinks</a>
+                        <a href="category.html?cat=Instant%20Noodles">Instant Noodles</a>
+                        <a href="category.html?cat=Breakfast%20Cereals">Breakfast Cereals</a>
+                        <a href="category.html?cat=Chocolates">Chocolates</a>
+                        <a href="category.html?cat=Ice%20Creams">Ice Creams</a>
+                        <a href="category.html?cat=Packaged%20Juices">Packaged Juices</a>
+                    </div>
                 </div>
+
+                <div class="dropdown">
+                    <button class="dropbtn">Ingredients</button>
+                    <div class="dropdown-content">
+                        <a href="#">Find Safer Alternatives</a>
+                        <a href="#">How It Works?</a>
+                        <a href="#">Risk Levels</a>
+                    </div>
+                </div>
+
+                <div class="dropdown">
+                    <button class="dropbtn">Support</button>
+                    <div class="dropdown-content">
+                        <a href="#">Sources</a>
+                        <a href="#">Submit a Product</a>
+                        <a href="#">Report an Issue</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="nav-group-right">
+                <div class="dropdown">
+                    <button class="nav-btn dropbtn">Translation</button>
+                    <div class="dropdown-content dropdown-right">
+                        <a href="#">Arabic</a>
+                        <a href="#">Hindi</a>
+                        <a href="#">English</a>
+                        <a href="#">Spanish</a>
+                    </div>
+                </div>
+                <button class="nav-btn">Search</button>
+                <button class="LoginSignUp" onclick="window.location.href='Login.html'">Login / Sign Up</button>
             </div>
         </div>
-    </nav>
 
-    <div class="main-layout">
-        <aside class="sidebar">
-            <h3>Filters</h3>
-            <div class="filter-group">
-                <h4>Health Risk</h4>
-                <label><input type="checkbox" class="filter-risk" value="Low"> Low Risk</label>
-                <label><input type="checkbox" class="filter-risk" value="Medium"> Medium Risk</label>
-                <label><input type="checkbox" class="filter-risk" value="High"> High Risk</label>
-            </div>
-            <div class="filter-group">
-                <h4>Dietary Needs</h4>
-                <label><input type="checkbox"> Sugar-Free</label>
-                <label><input type="checkbox"> Vegan</label>
-                <label><input type="checkbox"> Nut-Free</label>
-            </div>
-        </aside>
+        <div class="line"></div>
 
-        <main class="content-area">
-            <header class="content-header">
-                <div>
+        <div class="category-hero">
+            <div class="breadcrumb">
+                <a href="index.html">Home</a>
+                <span class="breadcrumb-sep">›</span>
+                <a href="index.html">Categories</a>
+                <span class="breadcrumb-sep">›</span>
+                <span id="breadcrumbCurrent">Loading...</span>
+            </div>
+            <div class="hero-inner">
+                <div class="hero-text">
                     <h1 id="categoryTitle">Category</h1>
-                    <p id="resultCount">Showing all items</p>
+                    <p id="categorySubtitle">Discover products, understand their ingredients, and make smarter choices for your health.</p>
                 </div>
-                <div class="sort-options">
-                    <select id="sortProducts">
-                        <option value="default">Sort by: Featured</option>
-                        <option value="risk-low">Risk: Low to High</option>
+                <div class="risk-legend">
+                    <div class="legend-item"><span class="legend-dot dot-low"></span>Low Risk</div>
+                    <div class="legend-item"><span class="legend-dot dot-medium"></span>Medium Risk</div>
+                    <div class="legend-item"><span class="legend-dot dot-high"></span>High Risk</div>
+                </div>
+            </div>
+            <div id="riskSummaryBar" class="risk-summary-bar" style="display:none;"></div>
+        </div>
+
+        <div class="browse-layout">
+
+            <aside class="sidebar">
+                <div class="sidebar-header">
+                    <h3>Filters</h3>
+                    <button class="btn-clear-filters" id="clearFilters">Clear All</button>
+                </div>
+
+                <div class="search-box-wrap">
+                    <input id="productSearch" type="search" placeholder="Search products..." class="sidebar-search" />
+                </div>
+
+                <div class="filter-group">
+                    <h4>Health Risk</h4>
+                    <label class="filter-label">
+                        <input type="checkbox" class="filter-risk" value="Low">
+                        <span class="dot dot-low"></span> Low Risk
+                    </label>
+                    <label class="filter-label">
+                        <input type="checkbox" class="filter-risk" value="Medium">
+                        <span class="dot dot-medium"></span> Medium Risk
+                    </label>
+                    <label class="filter-label">
+                        <input type="checkbox" class="filter-risk" value="High">
+                        <span class="dot dot-high"></span> High Risk
+                    </label>
+                </div>
+
+                <div class="filter-group">
+                    <h4>Dietary Needs</h4>
+                    <label class="filter-label"><input type="checkbox"> Sugar-Free</label>
+                    <label class="filter-label"><input type="checkbox"> Vegan</label>
+                    <label class="filter-label"><input type="checkbox"> Nut-Free</label>
+                </div>
+
+                <div class="filter-group">
+                    <h4>Sort By</h4>
+                    <select id="sortProducts" class="sidebar-select">
+                        <option value="default">Featured</option>
+                        <option value="risk-low">Risk: Low → High</option>
                         <option value="calories">Lowest Calories</option>
                     </select>
                 </div>
-            </header>
 
-            <div id="product-container" class="product-grid">
+                <div class="sidebar-tip">
+                    <span class="tip-icon">💡</span>
+                    <p>Products rated <strong>High Risk</strong> contain substances with documented health concerns. Always check labels.</p>
                 </div>
-        </main>
+            </aside>
+
+            <main class="content-area">
+                <div class="content-toolbar">
+                    <p id="resultCount" class="result-count">Loading...</p>
+                </div>
+                <div id="product-container" class="product-grid"></div>
+            </main>
+
+        </div>
+
+        <div class="EndOfMainPage">
+            <button class="BackToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">Back To The Top</button>
+            <div class="footer-container">
+                <div class="footer-column">
+                    <h2>Get To Know Us</h2>
+                    <a href="#">About ExposeTheLabel</a>
+                    <a href="#">Sources</a>
+                    <a href="#">Developers</a>
+                </div>
+                <div class="footer-column">
+                    <h2>Connect With Us</h2>
+                    <a href="#">Instagram</a>
+                    <a href="#">Facebook</a>
+                    <a href="#">YouTube</a>
+                </div>
+                <div class="footer-column">
+                    <h2>Help</h2>
+                    <a href="#">Support</a>
+                    <a href="#">Contact Us</a>
+                    <a href="#">Sources</a>
+                </div>
+            </div>
+        </div>
+
     </div>
 
-    <script src="products.js"></script>
     <script src="category.js"></script>
 </body>
 </html>
